@@ -3,40 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Developer Tools - DevToolBox</title>
-    <meta name="description" content="Free online developer tools: JSON formatter, code pastebin, UUID generator, Base64 encode/decode, character counter, color converter. No signup required.">
+    <title>Free Developer Tools - KeyTrix</title>
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #1a1206; color: #fef7e8; line-height: 1.6; }
-        header { padding: 40px 20px; text-align: center; background: rgba(245,158,11,0.08); border-bottom: 1px solid rgba(245,158,11,0.12); }
-        header h1 { font-size: 36px; color: #f59e0b; } header p { color: #b8844a; margin-top: 8px; }
-        main { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        .tool-card { display: block; background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.15); border-radius: 12px; padding: 24px; margin-bottom: 16px; text-decoration: none; color: #fef7e8; transition: all 0.2s; }
-        .tool-card:hover { background: rgba(245,158,11,0.1); border-color: #f59e0b; transform: translateX(4px); }
-        .tool-card h3 { color: #f59e0b; font-size: 18px; } .tool-card p { font-size: 14px; color: #b8844a; margin-top: 4px; }
-        .back { display: inline-block; margin-bottom: 24px; color: #f59e0b; text-decoration: none; }
-        iframe { border:0; padding:0; width:100%; max-width:728px; height:auto; overflow:hidden; display:block; margin:30px auto; }
-        .donation code { display: block; background: #2a1f0e; padding: 12px; border-radius: 8px; margin: 12px auto; max-width: 400px; color: #f59e0b; word-break: break-all; font-size: 13px; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f0f0f;color:#e0e0e0;min-height:100vh}
+        .container{max-width:1100px;margin:0 auto;padding:40px 20px}
+        h1{font-size:2.5rem;background:linear-gradient(135deg,#f5c542,#f0a030);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+        .subtitle{color:#888;font-size:1.1rem;margin-bottom:40px}
+        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+        .card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;padding:24px;transition:all .3s}
+        .card:hover{transform:translateY(-2px);border-color:#f5c54266;box-shadow:0 8px 30px #00000033}
+        .card-icon{font-size:2rem;margin-bottom:12px}
+        .card h3{color:#f5c542;margin-bottom:8px;font-size:1.2rem}
+        .card p{color:#999;font-size:.9rem;line-height:1.5;margin-bottom:16px}
+        .btn{display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:.9rem;font-weight:600;transition:all .3s}
+        .btn-primary{background:linear-gradient(135deg,#f5c542,#f0a030);color:#0f0f0f}
+        .btn-primary:hover{transform:scale(1.05);box-shadow:0 4px 15px #f5c54244}
+        .btn-outline{background:transparent;border:1px solid #f5c542;color:#f5c542}
+        .btn-outline:hover{background:#f5c542;color:#0f0f0f}
+        .cta-section{text-align:center;margin-top:60px;padding:40px;background:#1a1a1a;border-radius:16px;border:1px solid #2a2a2a}
+        .cta-section h2{color:#f5c542;margin-bottom:12px}
+        .cta-section p{color:#999;margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto}
+        .footer{margin-top:60px;text-align:center;color:#555;font-size:.85rem;padding-bottom:40px}
+        .footer a{color:#f5c542;text-decoration:none}
+        .badge{display:inline-block;background:#f5c54222;color:#f5c542;padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:600;margin-bottom:12px}
     </style>
 </head>
 <body>
-    <header><h1>✦ Free Dev Tools</h1><p>Useful tools for developers — free, fast, no signup</p></header>
-    <main>
-        <a href="../" class="back">← Back to DevToolBox Pro</a>
-        <a href="json-formatter.html" class="tool-card"><h3>🔧 JSON Formatter</h3><p>Validate, format, minify, and beautify JSON online.</p></a>
-        <a href="paste.html" class="tool-card"><h3>📋 DevPaste</h3><p>Share code snippets instantly. No signup needed.</p></a>
-        <a href="uuid.html" class="tool-card"><h3>🔑 UUID Generator</h3><p>Generate UUID v4 identifiers — 1 to 100 at once.</p></a>
-        <a href="base64.html" class="tool-card"><h3>🔐 Base64 Encoder/Decoder</h3><p>Encode and decode Base64 strings instantly.</p></a>
-        <a href="character-counter.html" class="tool-card"><h3>📊 Character Counter</h3><p>Count characters, words, sentences, paragraphs.</p></a>
-        <a href="color-converter.html" class="tool-card"><h3>🎨 Color Converter</h3><p>Convert HEX to RGB, HSL, CMYK instantly.</p></a>
-        <iframe data-aa="2439610" src="//acceptable.a-ads.com/2439610/?size=Adaptive"></iframe>
-        <div style="margin-top:30px; padding:20px; background:rgba(245,158,11,0.05); border-radius:12px; border:1px solid rgba(245,158,11,0.15); text-align:center;">
-            <p style="color:#b8844a;">☕ Support free dev tools — donate crypto</p>
-            <code>0x8bEF7ba775bC7657D0819440c262965F9E1218F1</code>
+    <div class="container">
+        <h1>🛠️ Free Developer Tools</h1>
+        <p class="subtitle">Fast, free, no-nonsense tools for developers. No ads. No tracking. No limits.</p>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">🎨</div>
+                <h3>Color Converter</h3>
+                <p>Convert between HEX, RGB, HSL, and named colors. Pick colors visually with the color picker.</p>
+                <a href="color-converter.html" class="btn btn-primary">Open Tool →</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔢</div>
+                <h3>UUID Generator</h3>
+                <p>Generate UUIDs v4 and v7 in bulk. Copy with one click. No limits on how many you generate.</p>
+                <a href="uuid.html" class="btn btn-primary">Open Tool →</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔤</div>
+                <h3>Base64 Encoder/Decoder</h3>
+                <p>Encode or decode any text to/from Base64. Full UTF-8 support with special characters.</p>
+                <a href="base64.html" class="btn btn-primary">Open Tool →</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3>JSON Formatter</h3>
+                <p>Format, validate and minify JSON. Syntax highlighting with error detection and line numbers.</p>
+                <a href="json-formatter.html" class="btn btn-primary">Open Tool →</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h3>Code Pastebin</h3>
+                <p>Share code snippets instantly. Support for multiple languages with syntax highlighting.</p>
+                <a href="paste.html" class="btn btn-primary">Open Tool →</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔢</div>
+                <h3>Character Counter</h3>
+                <p>Count characters, words, lines, and paragraphs in real-time. Perfect for writers and devs.</p>
+                <a href="character-counter.html" class="btn btn-primary">Open Tool →</a>
+            </div>
         </div>
-    </main>
-    <footer style="text-align:center; padding:20px; color:#6b7280; font-size:12px; border-top:1px solid rgba(245,158,11,0.1);">
-        <p>© 2026 DevToolBox — <a href="https://perezjefry53-cpu.github.io/devtoolbox-shop/" style="color:#f59e0b;">Premium Tools →</a></p>
-    </footer>
+
+        <div class="cta-section">
+            <div class="badge">🔥 NEW</div>
+            <h2>💎 Need Premium Tools?</h2>
+            <p>Get Python scripts, ChatGPT prompts, Excel guides, and more. Instant delivery after purchase.</p>
+            <a href="https://perezjefry53-cpu.github.io/devtoolbox-shop/" class="btn btn-outline">Browse Premium Tools →</a>
+        </div>
+
+        <div class="footer">
+            <p>Built with ❤️ by <a href="https://perezjefry53-cpu.github.io/devtoolbox-shop/">KeyTrix</a> — Premium Developer Tools</p>
+        </div>
+    </div>
 </body>
 </html>
