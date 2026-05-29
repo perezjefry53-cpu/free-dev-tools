@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Counter - Free Online Word & Character Count Tool</title>
+    <meta name="description" content="Free online character counter and word counter. Count characters, words, sentences, paragraphs instantly.">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #1a1206; color: #fef7e8; min-height: 100vh; }
+        header { padding: 20px; text-align: center; background: rgba(245,158,11,0.08); border-bottom: 1px solid rgba(245,158,11,0.12); }
+        header h1 { font-size: 28px; color: #f59e0b; } header p { color: #b8844a; font-size: 14px; }
+        main { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        textarea { width: 100%; min-height: 200px; background: #2a1f0e; color: #fef7e8; border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 16px; font-size: 16px; resize: vertical; }
+        textarea:focus { outline: none; border-color: #f59e0b; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 20px 0; }
+        .stat-card { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.15); border-radius: 10px; padding: 16px; text-align: center; }
+        .stat-card .num { font-size: 28px; font-weight: 900; color: #f59e0b; }
+        .stat-card .label { font-size: 12px; color: #b8844a; margin-top: 4px; }
+        .btn { padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #f59e0b, #f472b6); color: #1a1206; margin: 5px; }
+        .btn:hover { transform: translateY(-2px); }
+        footer { text-align: center; padding: 20px; color: #6b7280; font-size: 12px; border-top: 1px solid rgba(245,158,11,0.1); }
+        iframe { border:0; padding:0; width:100%; max-width:728px; height:auto; overflow:hidden; display:block; margin:20px auto; }
+    </style>
+</head>
+<body>
+    <header><h1>✦ Character Counter</h1><p>Count characters, words, sentences, and paragraphs — free & instant</p></header>
+    <main>
+        <textarea id="text" placeholder="Type or paste your text here..." oninput="count()" autofocus></textarea>
+        <div class="stats">
+            <div class="stat-card"><div class="num" id="chars">0</div><div class="label">Characters</div></div>
+            <div class="stat-card"><div class="num" id="words">0</div><div class="label">Words</div></div>
+            <div class="stat-card"><div class="num" id="sentences">0</div><div class="label">Sentences</div></div>
+            <div class="stat-card"><div class="num" id="paragraphs">0</div><div class="label">Paragraphs</div></div>
+            <div class="stat-card"><div class="num" id="lines">0</div><div class="label">Lines</div></div>
+        </div>
+        <div style="text-align:center;">
+            <button class="btn" onclick="clearText()">🗑️ Clear</button>
+            <button class="btn" onclick="copyText()">📋 Copy</button>
+        </div>
+        <iframe data-aa="2439610" src="//acceptable.a-ads.com/2439610/?size=Adaptive"></iframe>
+        <p style="text-align:center; margin-top:16px;"><a href="../" style="color:#f59e0b;">← DevToolBox Pro</a> · <a href="https://perezjefry53-cpu.github.io/devtoolbox-shop/" style="color:#f59e0b;">Premium Tools</a></p>
+    </main>
+    <footer><p>© 2026 DevToolBox — Free Developer Tools</p></footer>
+    <script>
+        function count() {
+            const t = document.getElementById('text').value;
+            document.getElementById('chars').textContent = t.length;
+            document.getElementById('words').textContent = t.trim() ? t.trim().split(/\s+/).length : 0;
+            document.getElementById('sentences').textContent = t.split(/[.!?]+/).filter(s => s.trim()).length;
+            document.getElementById('paragraphs').textContent = t.split(/\n\s*\n/).filter(p => p.trim()).length;
+            document.getElementById('lines').textContent = t.split('\n').length;
+        }
+        function clearText() { document.getElementById('text').value = ''; count(); }
+        function copyText() { const t = document.getElementById('text').value; if(t) navigator.clipboard.writeText(t); }
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID Generator - Free Online Tool</title>
+    <meta name="description" content="Free online UUID v4 generator. Generate random UUIDs instantly.">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #1a1206; color: #fef7e8; min-height: 100vh; }
+        header { padding: 20px; text-align: center; background: rgba(245,158,11,0.08); border-bottom: 1px solid rgba(245,158,11,0.12); }
+        header h1 { font-size: 28px; color: #f59e0b; } header p { color: #b8844a; font-size: 14px; }
+        main { max-width: 700px; margin: 40px auto; padding: 0 20px; text-align: center; }
+        .uuid-box { background: #2a1f0e; border: 1px solid rgba(245,158,11,0.2); border-radius: 12px; padding: 30px; margin: 20px 0; word-break: break-all; font-family: monospace; font-size: 18px; color: #f59e0b; }
+        .btn { padding: 12px 32px; border-radius: 8px; border: none; cursor: pointer; font-size: 16px; font-weight: 700; transition: all 0.2s; background: linear-gradient(135deg, #f59e0b, #f472b6); color: #1a1206; margin: 8px; }
+        .btn:hover { transform: translateY(-2px); }
+        .count-select { background: #2a1f0e; color: #fef7e8; border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 8px 16px; font-size: 16px; }
+        .uuid-list { text-align: left; font-family: monospace; font-size: 13px; line-height: 2; background: #2a1f0e; padding: 20px; border-radius: 8px; margin: 20px 0; max-height: 300px; overflow-y: auto; }
+        .uuid-list span { display: block; color: #f59e0b; }
+        .donation { margin-top: 40px; padding: 20px; background: rgba(245,158,11,0.05); border-radius: 12px; border: 1px solid rgba(245,158,11,0.15); }
+        .donation code { display: block; background: #2a1f0e; padding: 12px; border-radius: 8px; margin: 12px auto; max-width: 400px; color: #f59e0b; word-break: break-all; font-size: 13px; }
+        footer { text-align: center; padding: 20px; color: #6b7280; font-size: 12px; border-top: 1px solid rgba(245,158,11,0.1); }
+    </style>
+</head>
+<body>
+    <header><h1>✦ UUID Generator</h1><p>Generate random UUID v4 identifiers — free & instant</p></header>
+    <main>
+        <div class="uuid-box" id="uuidDisplay">xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx</div>
+        <div>
+            <button class="btn" onclick="generateUUID()">✦ Generate</button>
+            <button class="btn" onclick="copyUUID()">📋 Copy</button>
+            <select class="count-select" id="count" onchange="generateMultiple()">
+                <option value="1">1</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+        <div id="multipleOutput" style="display:none;" class="uuid-list"></div>
+        <!-- A-Ads -->
+<div style="max-width:600px; margin:20px auto; text-align:center; min-height:60px;">
+    <iframe data-aa="2439610" src="//acceptable.a-ads.com/2439610/?size=Adaptive" style="border:0; padding:0; width:100%; height:auto; overflow:hidden; display:block; margin:auto;"></iframe>
+</div>
+<!-- Mid-page Ad -->
+    <div style="margin:20px auto; max-width:600px; background:linear-gradient(135deg, rgba(245,158,11,0.06), rgba(245,158,11,0.02)); border:1px solid rgba(245,158,11,0.1); border-radius:10px; padding:12px 16px; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;">
+        <span style="font-size:10px; color:#6b7280; text-transform:uppercase; letter-spacing:1px;">Ad</span>
+        <span style="color:#b8844a; font-size:12px;">Support free tools — </span>
+        <a href="https://www.coinbase.com/join" target="_blank" rel="sponsored" style="color:#22c55e; font-size:12px; font-weight:600;">Get $10 free Bitcoin on Coinbase →</a>
+    </div>
+
+    <div class="donation">
+            <p style="color:#b8844a;">☕ Support free dev tools — donate crypto</p>
+            <code>0x8bEF7ba775bC7657D0819440c262965F9E1218F1</code>
+        </div>
+        <p style="margin-top:16px;"><a href="../" style="color:#f59e0b;">← Back to DevToolBox</a></p>
+    </main>
+    <footer><p>© 2026 — <a href="https://perezjefry53-cpu.github.io/devtoolbox-shop/premium.html" style="color:#f59e0b;">Premium Tools</a></p></footer>
+    <script>
+        function gen() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16); }); }
+        function generateUUID() { document.getElementById('uuidDisplay').textContent = gen(); document.getElementById('multipleOutput').style.display = 'none'; }
+        function generateMultiple() { const n = parseInt(document.getElementById('count').value); const out = document.getElementById('multipleOutput'); if(n === 1) { generateUUID(); return; } out.innerHTML = Array.from({length: n}, () => '<span>'+gen()+'</span>').join(''); out.style.display = 'block'; }
+        function copyUUID() { const text = document.getElementById('uuidDisplay').textContent; navigator.clipboard.writeText(text).then(() => { const b = document.getElementById('uuidDisplay'); b.style.borderColor = '#22c55e'; setTimeout(() => b.style.borderColor = '', 1000); }); }
+        generateUUID();
+    </script>
+</body>
+</html>

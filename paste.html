@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevPaste - Share Code Instantly</title>
+    <meta name="description" content="Free, fast code sharing tool. Paste and share code snippets instantly.">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #1a1206; color: #fef7e8;
+            min-height: 100vh; display: flex; flex-direction: column;
+        }
+        header { padding: 20px; text-align: center; background: rgba(245,158,11,0.08); border-bottom: 1px solid rgba(245,158,11,0.12); }
+        header h1 { font-size: 28px; color: #f59e0b; }
+        header p { color: #b8844a; font-size: 14px; }
+        main { flex: 1; max-width: 900px; margin: 20px auto; width: 100%; padding: 0 20px; }
+        textarea { width: 100%; min-height: 300px; background: #2a1f0e; color: #fef7e8; border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 16px; font-family: 'Courier New', monospace; font-size: 14px; resize: vertical; }
+        textarea:focus { outline: none; border-color: #f59e0b; }
+        .btn { padding: 12px 32px; border-radius: 8px; border: none; cursor: pointer; font-size: 16px; font-weight: 700; transition: all 0.2s; }
+        .btn-primary { background: linear-gradient(135deg, #f59e0b, #f472b6); color: #1a1206; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(245,158,11,0.3); }
+        .actions { display: flex; gap: 12px; margin: 16px 0; flex-wrap: wrap; }
+        .donation { margin-top: 30px; padding: 20px; background: rgba(245,158,11,0.05); border-radius: 12px; border: 1px solid rgba(245,158,11,0.15); text-align: center; }
+        .donation code { display: block; background: #2a1f0e; padding: 12px; border-radius: 8px; margin: 12px auto; max-width: 400px; font-size: 13px; word-break: break-all; color: #f59e0b; }
+        footer { text-align: center; padding: 20px; color: #6b7280; font-size: 12px; border-top: 1px solid rgba(245,158,11,0.1); }
+        .toast { position: fixed; bottom: 20px; right: 20px; background: #22c55e; color: #1a1206; padding: 12px 24px; border-radius: 8px; font-weight: 700; display: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>✦ DevPaste</h1>
+        <p>Free, fast code sharing. No signup required.</p>
+    </header>
+    <main>
+        <textarea id="paste" placeholder="Paste your code here..."></textarea>
+        <div class="actions">
+            <button class="btn btn-primary" onclick="createPaste()">✦ Create Paste</button>
+            <button class="btn btn-primary" onclick="copyContent()">📋 Copy</button>
+            <button class="btn btn-primary" onclick="clearContent()">🗑️ Clear</button>
+        </div>
+        <div id="result" style="display:none; margin-top:16px; padding:16px; background:rgba(34,197,94,0.1); border-radius:8px; border:1px solid rgba(34,197,94,0.2);">
+            <p>✅ Paste created! <a id="pasteLink" href="#" target="_blank" style="color:#22c55e;">Open paste</a></p>
+        </div>
+        <div class="donation">
+            <p>☕ Support DevPaste — donations keep it free</p>
+            <code>0x8bEF7ba775bC7657D0819440c262965F9E1218F1</code>
+            <p style="font-size:12px; color:#b8844a;">ETH / USDC / USDT / DAI (ERC-20)</p>
+        </div>
+    </main>
+    <footer>
+        <p>© 2026 DevPaste — Free & Open • <a href="https://perezjefry53-cpu.github.io/devtoolbox-shop/" style="color:#f59e0b;">DevToolBox Pro</a></p>
+    </footer>
+    <div id="toast" class="toast"></div>
+    <script>
+        function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 3000); }
+        function createPaste() {
+            const content = document.getElementById('paste').value.trim();
+            if (!content) { showToast('⚠️ Please paste some code first'); return; }
+            const id = Math.random().toString(36).substring(2, 8);
+            localStorage.setItem('paste_' + id, content);
+            const url = window.location.origin + window.location.pathname + '?' + id;
+            document.getElementById('pasteLink').href = url;
+            document.getElementById('pasteLink').textContent = url;
+            document.getElementById('result').style.display = 'block';
+            showToast('✅ Paste created!');
+        }
+        // Load paste from URL
+        const id = window.location.search.substring(1);
+        if (id) {
+            const content = localStorage.getItem('paste_' + id);
+            if (content) { document.getElementById('paste').value = content; document.querySelector('textarea').readOnly = true; }
+        }
+        function copyContent() {
+            const text = document.getElementById('paste').value;
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(() => showToast('📋 Copied!'));
+        }
+        function clearContent() { document.getElementById('paste').value = ''; document.getElementById('result').style.display = 'none'; }
+    </script>
+</body>
+</html>
